@@ -12,10 +12,12 @@ export function LoginCard({ onAuthSuccess, onSwitchToSignup, successMessage }: P
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     try {
       const res = await authService.login({ email, password });
@@ -24,6 +26,8 @@ export function LoginCard({ onAuthSuccess, onSwitchToSignup, successMessage }: P
       onAuthSuccess();
     } catch {
       setError("Invalid email or password");
+    }finally{
+      setIsLoading(false);
     }
   };
 
@@ -44,6 +48,7 @@ export function LoginCard({ onAuthSuccess, onSwitchToSignup, successMessage }: P
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={isLoading}
         />
 
         <input
@@ -53,10 +58,14 @@ export function LoginCard({ onAuthSuccess, onSwitchToSignup, successMessage }: P
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={isLoading}
         />
 
         <button className="w-full bg-[#2563EB] text-white py-2 rounded">
-          Login
+          {isLoading && (
+            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+          )}
+          {isLoading ? "Logging in..." : "Login"}
         </button>
       </form>
 

@@ -11,22 +11,25 @@ export function SignupCard({ onSwitchToLogin }: Props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setError("");
-  setSuccess("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setIsLoading(true);
+    setSuccess("");
 
-  try {
-    await authService.register({ name, email, password });
+    try {
+      await authService.register({ name, email, password });
 
-    // ✅ Switch to login page and pass success message
-    onSwitchToLogin("Account created successfully. Please login.");
-  } catch {
-    setError("User already exists");
-  }
-};
-
+      // ✅ Switch to login page and pass success message
+      onSwitchToLogin("Account created successfully. Please login.");
+    } catch {
+      setError("User already exists");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md max-w-md w-full">
@@ -43,6 +46,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
+          disabled={isLoading}
         />
 
         <input
@@ -52,6 +56,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          disabled={isLoading}
         />
 
         <input
@@ -61,10 +66,14 @@ const handleSubmit = async (e: React.FormEvent) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          disabled={isLoading}
         />
 
         <button className="w-full bg-[#2563EB] text-white py-2 rounded">
-          Sign Up
+          {isLoading && (
+            <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+          )}
+          {isLoading ? "Creating account..." : "Sign Up"}
         </button>
       </form>
 
