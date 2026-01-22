@@ -181,14 +181,14 @@ Example format:
 
 ## 🎥 Demo Video
 
-A short screen recording (1–2 minutes) demonstrating:
+A short screen recording (2.20 minutes) demonstrating:
 
 * Project setup
 * User authentication
 * Task creation, update, and deletion
 * Search and pagination
 
-*(Link will be added here)*
+Demo Video : https://youtu.be/9Nru-S4mn5I 
 
 ---
 
