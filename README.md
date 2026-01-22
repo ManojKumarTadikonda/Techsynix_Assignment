@@ -162,20 +162,27 @@ docker-compose up --build
 
 Below are some screenshots demonstrating the functionality of the application.
 
-> *(Add screenshots here)*
+### 🔐 Authentication
+<p float="left">
+  <img src="screenshots/login.png" width="450" />
+  <img src="screenshots/signup.png" width="450" />
+</p>
 
-* Login & Signup screens
-* Dashboard with task list
-* Create / Edit task form
-* Search, filter, and pagination functionality
-* Responsive layout (mobile & desktop)
 
-Example format:
+---
 
-```md
-![Login Page](screenshots/login.png)
-![Dashboard](screenshots/dashboard.png)
-```
+### 📋 Dashboard
+<img src="screenshots/dashboard.png" width="800" />
+
+---
+
+### 📱 Responsive Design (Mobile)
+<p float="left">
+<img src="screenshots/mobile-view1.jpeg" width="250" />
+<img src="screenshots/mobile-view2.jpeg" width="250" />
+<img src="screenshots/mobile-view3.jpeg" width="250" />
+</p>
+
 
 ---
 
